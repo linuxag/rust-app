@@ -113,17 +113,14 @@ pipeline
         stage('static-dockerfile-scan')
         {
             
-            /*steps{
+            steps{
                 sh '''
                 echo "checov to scan the dockerfile"
-                docker run -t -v $(pwd):/output bridgecrew/checkov -f /output/Dockerfile -o json |  jq '.' > docker_result | exit 0
-                cat docker_result  | grep -B 2 FAILED
-                var=$(cat docker_result  | grep -ov -B 2 FAILED | wc -l)
+                #docker run -t -v $(pwd):/output bridgecrew/checkov -f /output/Dockerfile -o json |  jq '.' > docker_result | exit 0
+                #cat docker_result  | grep -B 2 FAILED
+                #var=$(cat docker_result  | grep -ov -B 2 FAILED | wc -l)
                 '''
-            }*/
-            sh '''
-            echo "checov"
-            '''
+            }
         
         }
         stage('docker-build')
