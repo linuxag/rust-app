@@ -22,8 +22,9 @@ pipeline
             steps{
             sh '''
             #static analyisi of Deployment
-            docker run -t -v $(pwd):/output bridgecrew/checkov -f /output/rust-cart-app1-deployment.yml -o json |  jq '.' > k8deploy_result | exit 0            
-            cat k8deploy_result  | grep -B 2 FAILED
+            #docker run -t -v $(pwd):/output bridgecrew/checkov -f /output/rust-cart-app1-deployment.yml -o json |  jq '.' > k8deploy_result | exit 0            
+            #cat k8deploy_result  | grep -B 2 FAILED
+            echo "sacnning dockerfile"
             '''
             }
         }
