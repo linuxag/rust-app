@@ -143,8 +143,8 @@ pipeline
                 #install try
                 #run try sh 'trivy image rahul6023/rust-cart-app1'
                 #condition to get HIGH | CRITICAL == 0
-                trivy image newbielinux1/rust-cart-app1 | grep HIGH
-                trivy image newbielinux1/rust-cart-app1 | grep CRITICAL
+                #trivy image newbielinux1/rust-cart-app1 | grep HIGH
+                #trivy image newbielinux1/rust-cart-app1 | grep CRITICAL
                 '''
             }
         
