@@ -4,7 +4,7 @@ pipeline
 {
     agent
     {
-        label 'control'
+        label 'control1'
     }
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
