@@ -155,7 +155,7 @@ pipeline
             steps{
                 sh '''
                 echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                docker tag rust-cart-app1:latest newbielinux1/rust-cart-app1:latest
+                #docker tag rust-cart-app1:latest newbielinux1/rust-cart-app1:latest
                 docker push newbielinux1/rust-cart-app1:latest
                 '''
             }
