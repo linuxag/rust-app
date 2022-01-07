@@ -4,7 +4,7 @@ pipeline
 {
     agent
     {
-        label 'control1'
+        label 'worker1'
     }
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
@@ -19,10 +19,13 @@ pipeline
         {
             
             steps{
-                script 
+                /*script 
                 {
                     emailext subject: '${JOB_NAME} - ${BUILD_NUMBER} ', body: 'Job url : ${BUILD_URL}',  to: '${project_owner_team_email}'
-                }
+                }*/
+                sh '''
+                echo "notification sent"
+                '''
             }
         
         }
