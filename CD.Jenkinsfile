@@ -45,7 +45,7 @@ pipeline
             steps{
                 sh '''
                 sleep 5
-                curl 10.182.0.3:30000
+                curl 192.168.0.2:30022
                 '''
             }
         
