@@ -30,7 +30,7 @@ pipeline
         {
             
             steps{
-                 script 
+                 /*script 
                         {
                             withSonarQubeEnv('sonarqube-server') 
                             {
@@ -74,7 +74,10 @@ pipeline
 
                             def qualitygate = waitForQualityGate()
                             server_report = qualitygate.status
-                        }
+                        }*/
+                        sh '''
+                        echo "sonarqube "
+                        '''
                     
                 }
         
@@ -82,7 +85,7 @@ pipeline
         stage('manual-qualiy-gate')
         {
             
-            steps{
+            /*steps{
                 sh '''
                 
                 echo "send email to required team , email should have link for sonaruqbe and jenkins current job"
@@ -95,8 +98,14 @@ pipeline
                 {
                     emailext subject: '${JOB_NAME} - ${BUILD_NUMBER} ', body: 'Job url : ${BUILD_URL}',  to: '${project_owner_team_email}'
                 }
+            }*/
+            steps{
+                sh '''
+                echo "quality gate"
+                '''
             }
-        
+           
+
         }
         stage('static-dockerfile-scan')
         {
@@ -131,8 +140,8 @@ pipeline
                 #install try
                 #run try sh 'trivy image rahul6023/rust-cart-app1'
                 #condition to get HIGH | CRITICAL == 0
-                trivy image rahul6023/rust-cart-app1 | grep HIGH
-                trivy image rahul6023/rust-cart-app1 | grep CRITICAL
+                trivy image newbielinux1/rust-cart-app1 | grep HIGH
+                trivy image newbielinux1/rust-cart-app1 | grep CRITICAL
                 '''
             }
         
@@ -144,7 +153,7 @@ pipeline
                 sh '''
                 echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
                 docker tag rust-cart-app1:latest rahul6023/rust-cart-app1:latest
-                docker push rahul6023/rust-cart-app1:latest
+                docker push newbielinux1/rust-cart-app1:latest
                 '''
             }
         
