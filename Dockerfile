@@ -2,7 +2,7 @@ FROM rust:slim-buster AS build
 WORKDIR /opt
 COPY . .
 RUN cargo build
-EXPOSE 8080
+EXPOSE 8081
 
 FROM debian:stretch-slim
 #FROM busybox

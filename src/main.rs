@@ -28,8 +28,8 @@ fn handle_client(stream: TcpStream) {
 }
 
 fn main() {
-    let listener = TcpListener::bind("0.0.0.0:8080").unwrap();
-    println!("Listening for connections on port {}", 8080);
+    let listener = TcpListener::bind("0.0.0.0:8081").unwrap();
+    println!("Listening for connections on port {}", 8081);
 
     for stream in listener.incoming() {
         match stream {
