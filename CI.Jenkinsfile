@@ -125,7 +125,7 @@ pipeline
             
             steps{
                 sh '''
-                docker build -t rust-cart-app1:latest -f Dockerfile .
+                docker build -t newbielinux1/rust-cart-app1:latest -f Dockerfile .
                 echo "checov to scan the dockerfile"
                 '''
             }
