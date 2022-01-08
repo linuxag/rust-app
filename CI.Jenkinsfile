@@ -103,6 +103,11 @@ pipeline
                 }
             }*/
             steps{
+                 /*script 
+                {
+                    emailext subject: '${JOB_NAME} - ${BUILD_NUMBER} ', body: 'Job url : ${BUILD_URL}',  to: '${project_owner_team_email}'
+                }*/
+                input('Do you want to proceed as quality gate has been failed?')
                 sh '''
                 echo "quality gate"
                 '''
