@@ -39,6 +39,8 @@ pipeline
             
             steps{
                 sh '''
+                pwd
+                ls -ltr
                 sed -i "s/unique_tag/$app_version/g" rust-cart-app1-deployment.yml
                 
                 cat rust-cart-app1-deployment.yml | grep app_version
