@@ -4,6 +4,9 @@ pipeline
     {
         label 'worker1'
     }
+    parameters { 
+    string(name: 'app_version', defaultValue: 'v1', description: 'app_version') 
+    }
     stages
     {
         stage('send-notification')
@@ -36,8 +39,12 @@ pipeline
             
             steps{
                 sh '''
-                sed -i 's/unique_tag/latest/g' rust-cart-app1-deployment.yml
+                sed -i "s/unique_tag/$app_version/g" rust-cart-app1-deployment.yml
+                
+                cat rust-cart-app1-deployment.yml | grep app_version
+
                 #echo "kubectl deploy"
+                kubectl delete -f rust-cart-app1-deployment.yml | exit 0
                 kubectl apply -f rust-cart-app1-deployment.yml
                 '''
             }
