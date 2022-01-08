@@ -1,4 +1,4 @@
-def project_owner_team_email = 'jsnrahul@gmail.com'
+def project_owner_team_email = 'team1@gmail.com'
 
 pipeline
 {
@@ -128,7 +128,8 @@ pipeline
             
             steps{
                 sh '''
-                docker build -t newbielinux1/rust-cart-app1:latest -f Dockerfile .
+                echo "app_version : $app_version"
+                docker build -t newbielinux1/rust-cart-app1:$app_version -f Dockerfile .
                 echo "checov to scan the dockerfile"
                 '''
             }
@@ -141,10 +142,10 @@ pipeline
                 sh '''
                 echo "trivy scan"
                 #install try
-                #run try sh 'trivy image rahul6023/rust-cart-app1'
+                #run try sh 'trivy image rust-cart-app1'
                 #condition to get HIGH | CRITICAL == 0
-                #trivy image newbielinux1/rust-cart-app1 | grep HIGH
-                #trivy image newbielinux1/rust-cart-app1 | grep CRITICAL
+                #trivy image newbielinux1/rust-cart-app1:$app_version | grep HIGH
+                #trivy image newbielinux1/rust-cart-app1:$app_version | grep CRITICAL
                 '''
             }
         
@@ -155,8 +156,8 @@ pipeline
             steps{
                 sh '''
                 echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                #docker tag rust-cart-app1:latest newbielinux1/rust-cart-app1:latest
-                docker push newbielinux1/rust-cart-app1:latest
+                #docker tag rust-cart-app1:latest newbielinux1/rust-cart-app1::$app_version
+                docker push newbielinux1/rust-cart-app1::$app_version
                 '''
             }
         
